@@ -26,8 +26,20 @@ describe('When user makes a POST request', () => {
 })
 
 describe('When user makes a GET request', () => {
-    it.todo("GET '/' should respond status code 200")
-    it.todo("GET '/:id' should respond status code 200")
+    test("GET / should respond status code 200", done => {
+        request(app)
+            .get("/")
+            .expect("Content-Type", /json/)
+            .expect(200, done);
+    });
+
+    test("GET /:id should respond status code 200", done => {
+        request(app)
+            .get("/b3rsb4s84")
+            .expect("Content-Type", /json/)
+            .expect({ draft: { id: 'b3rsb4s84', article: 'New Posted article' } })
+            .expect(200, done);
+    });
 })
 
 describe('When user makes a PUT request', () => {
