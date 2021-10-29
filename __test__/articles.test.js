@@ -67,7 +67,20 @@ describe('When user makes a PUT request', () => {
 })
 
 describe('When user makes a DELETE request', () => {
-    it.todo("DELETE '/:id' should respond status code 200 and updated Article")
-    it.todo("non-existent DELETE '/:id' should respond status code 404 and error message")
+    test("DELETE /:id should respond status code 200 and updated Article", done => {
+        request(app)
+            .delete("/wncukc3h")
+            .expect("Content-Type", /json/)
+            .expect({ alert: 'Article deleted' })
+            .expect(200, done);
+    });
+
+    test("non-existent DELETE /:id should respond status code 404 and error message", done => {
+        request(app)
+            .delete("/fakeID123")
+            .expect("Content-Type", /json/)
+            .expect({ error: 'Article not found' })
+            .expect(404, done);
+    });
 })
 
