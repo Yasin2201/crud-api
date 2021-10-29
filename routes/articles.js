@@ -7,6 +7,11 @@ router.get('/', (req, res) => {
     res.status(200).json({ drafts })
 })
 
+router.get('/:id', (req, res) => {
+    const draft = req.app.db.get("drafts").find({ id: req.params.id }).value()
+    res.status(200).json({ draft })
+})
+
 router.post('/', (req, res) => {
     try {
         // check if input is empty
