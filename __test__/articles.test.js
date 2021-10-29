@@ -43,8 +43,27 @@ describe('When user makes a GET request', () => {
 })
 
 describe('When user makes a PUT request', () => {
-    it.todo("PUT '/:id' should respond status code 200 and updated Article")
-    it.todo("empty PUT '/:id' should respond status code 400 and error message")
+    let data = {
+        article: "Updated Posted Article",
+    }
+
+    test("PUT /:id should respond status code 200 and updated Article", done => {
+        request(app)
+            .put("/b3rsb4s84")
+            .type("form")
+            .send(data)
+            .expect(200, done);
+    });
+
+    test("empty PUT /:id should respond status code 400 and error message", done => {
+        request(app)
+            .put("/b3rsb4s84")
+            .type("form")
+            .send({ article: '' })
+            .expect("Content-Type", /json/)
+            .expect({ error: 'Article input empty' })
+            .expect(400, done);
+    });
 })
 
 describe('When user makes a DELETE request', () => {
