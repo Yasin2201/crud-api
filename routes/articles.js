@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const uniqid = require('uniqid');
 
+router.get('/', (req, res) => {
+    const drafts = req.app.db.get("drafts")
+    res.status(200).json({ drafts })
+})
+
 router.post('/', (req, res) => {
     try {
         // check if input is empty
