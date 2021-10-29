@@ -2,8 +2,27 @@ const request = require("supertest");
 const app = require('../app');
 
 describe('When user makes a POST request', () => {
-    it.todo("POST '/' should respond status code 200 and new Article")
-    it.todo("empty POST '/' should respond status code 400 and error message")
+    test("POST / should respond status code 200 and new Article", done => {
+        request(app)
+            .post("/")
+            .type("form")
+            .send({
+                id: "b3rsb4s84",
+                article: "New Posted article",
+            })
+            .expect("Content-Type", /json/)
+            .expect(200, done);
+    });
+
+    test("empty POST / should respond status code 400 and error message", done => {
+        request(app)
+            .post("/")
+            .type("form")
+            .send({ article: '' })
+            .expect("Content-Type", /json/)
+            .expect({ error: 'Article input empty' })
+            .expect(400, done);
+    });
 })
 
 describe('When user makes a GET request', () => {
