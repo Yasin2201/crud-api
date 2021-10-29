@@ -32,4 +32,18 @@ router.post('/', (req, res) => {
     }
 })
 
+router.put('/:id', (req, res) => {
+    try {
+        if (!req.body.article) {
+            res.status(400).json({ error: 'Article input empty' })
+        } else {
+            req.app.db.get("drafts").find({ id: req.params.id }).assign({ article: req.body.article }).write()
+            res.json({ alert: 'Updated Article' })
+        }
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'Error' })
+    }
+})
+
 module.exports = router;
