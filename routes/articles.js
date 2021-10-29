@@ -47,13 +47,18 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    const draft = req.app.db.get("drafts").find({ id: req.params.id }).value()
+    try {
+        const draft = req.app.db.get("drafts").find({ id: req.params.id }).value()
 
-    if (draft) {
-        req.app.db.get("drafts").remove({ id: req.params.id }).write()
-        res.status(200).json({ alert: 'Article deleted' })
-    } else {
-        res.status(404).json({ error: 'Article not found' })
+        if (draft) {
+            req.app.db.get("drafts").remove({ id: req.params.id }).write()
+            res.status(200).json({ alert: 'Article deleted' })
+        } else {
+            res.status(404).json({ error: 'Article not found' })
+        }
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'Error' })
     }
 })
 
