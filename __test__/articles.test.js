@@ -69,7 +69,7 @@ describe('When user makes a PUT request', () => {
 describe('When user makes a DELETE request', () => {
     test("DELETE /:id should respond status code 200 and updated Article", done => {
         request(app)
-            .delete("/wncukc3h")
+            .delete("/b3rsb4s84")
             .expect("Content-Type", /json/)
             .expect({ alert: 'Article deleted' })
             .expect(200, done);
