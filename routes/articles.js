@@ -21,6 +21,7 @@ router.post('/', (req, res) => {
             const article = {
                 //for tests only when id is passed into test POST data req.body.id used instead of uniqid
                 id: req.body.id || uniqid(),
+                title: req.body.title,
                 article: req.body.article
             }
             req.app.db.get("drafts").push(article).write()
@@ -37,7 +38,7 @@ router.put('/:id', (req, res) => {
         if (!req.body.article) {
             res.status(400).json({ error: 'Article input empty' })
         } else {
-            req.app.db.get("drafts").find({ id: req.params.id }).assign({ article: req.body.article }).write()
+            req.app.db.get("drafts").find({ id: req.params.id }).assign({ title: req.body.title, article: req.body.article }).write()
             res.json({ alert: 'Updated Article' })
         }
     } catch (error) {

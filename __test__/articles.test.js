@@ -8,6 +8,7 @@ describe('When user makes a POST request', () => {
             .type("form")
             .send({
                 id: "b3rsb4s84",
+                title: "New Title",
                 article: "New Posted article",
             })
             .expect("Content-Type", /json/)
@@ -37,13 +38,20 @@ describe('When user makes a GET request', () => {
         request(app)
             .get("/b3rsb4s84")
             .expect("Content-Type", /json/)
-            .expect({ draft: { id: 'b3rsb4s84', article: 'New Posted article' } })
+            .expect({
+                draft: {
+                    id: 'b3rsb4s84',
+                    title: "New Title",
+                    article: 'New Posted article'
+                }
+            })
             .expect(200, done);
     });
 })
 
 describe('When user makes a PUT request', () => {
     let data = {
+        title: "Updated Title",
         article: "Updated Posted Article",
     }
 
