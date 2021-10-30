@@ -21,7 +21,7 @@ describe('When user makes a POST request', () => {
             .type("form")
             .send({ article: '' })
             .expect("Content-Type", /json/)
-            .expect({ error: 'Article input empty' })
+            .expect({ error: 'Article or Title input empty' })
             .expect(400, done);
     });
 })
@@ -69,7 +69,7 @@ describe('When user makes a PUT request', () => {
             .type("form")
             .send({ article: '' })
             .expect("Content-Type", /json/)
-            .expect({ error: 'Article input empty' })
+            .expect({ error: 'Article or Title input empty' })
             .expect(400, done);
     });
 })
