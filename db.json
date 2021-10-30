@@ -1,3 +1,19 @@
 {
-  "drafts": []
+  "drafts": [
+    {
+      "id": "fb8734b",
+      "title": "First Title",
+      "article": "First Posted article"
+    },
+    {
+      "id": "bcw8ih48",
+      "title": "Second Title",
+      "article": "Second Posted article"
+    },
+    {
+      "id": "cnw794hbf",
+      "title": "Third Title",
+      "article": "Third Posted article"
+    }
+  ]
 }
