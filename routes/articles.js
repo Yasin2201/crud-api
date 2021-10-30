@@ -15,8 +15,8 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     try {
         // check if input is empty
-        if (!req.body.article) {
-            res.status(400).json({ error: 'Article input empty' })
+        if (!req.body.title || !req.body.article) {
+            res.status(400).json({ error: 'Article or Title input empty' })
         } else {
             const article = {
                 //for tests only when id is passed into test POST data req.body.id used instead of uniqid
