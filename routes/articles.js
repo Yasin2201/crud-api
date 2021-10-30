@@ -35,8 +35,8 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     try {
-        if (!req.body.article) {
-            res.status(400).json({ error: 'Article input empty' })
+        if (!req.body.title || !req.body.article) {
+            res.status(400).json({ error: 'Article or Title input empty' })
         } else {
             req.app.db.get("drafts").find({ id: req.params.id }).assign({ title: req.body.title, article: req.body.article }).write()
             res.json({ alert: 'Updated Article' })
